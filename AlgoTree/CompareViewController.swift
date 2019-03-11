@@ -30,6 +30,9 @@ class CompareViewController: UIViewController
     
     func compareBinaryTree(treeA: Tree, treeB: Tree) -> Int
     {
+        //本來想輸出兩個陣列, 再去用陣列比較
+        //但比較時要連nil也要比較, 所以用陣列的話要先求出層數
+        //才知道要以哪個層數較高的為主去畫perfect binary tree
         let aryA = treeA.levelorder()
         let aryB = treeB.levelorder()
         return -1

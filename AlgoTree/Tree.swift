@@ -19,7 +19,34 @@ class Tree
     func strInorder() -> String
     {
         var strInorder = ""
+        
+//        var currentNode: Node = self.root
+//
+//        repeat
+//        {
+//            if let left = currentNode.left
+//            {
+//                currentNode = left
+//            }
+//        }
+//        while (currentNode.left != nil)
+        
+        /*
+         //逐一放入, 逐一取出, 應該是FILO
+         
+         1.如果有左, 往左
+         2.如果沒有, 輸出自己(6), 往上
+         3.自己未輸出 ? 輸出自己(3), 往右
+           自己已輸出 ? 往上
+         4.回到1.
+         */
+        
         return strInorder
+    }
+    
+    func travelDSF()
+    {
+        
     }
     
     func levelorder() -> [Int?]
