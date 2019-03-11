@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Inorder View Controller-->
         <scene sceneID="SF7-3Q-9iK">
             <objects>
-                <viewController id="ilw-Ci-hTo" sceneMemberID="viewController">
+                <viewController id="ilw-Ci-hTo" customClass="InorderViewController" customModule="AlgoTree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rFn-CO-xWU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1953" y="523"/>
         </scene>
-        <!--View Controller-->
+        <!--Compare View Controller-->
         <scene sceneID="h5b-3X-ZtB">
             <objects>
-                <viewController id="WUo-qf-rhm" sceneMemberID="viewController">
+                <viewController id="WUo-qf-rhm" customClass="CompareViewController" customModule="AlgoTree" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cAi-OE-3Pg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
