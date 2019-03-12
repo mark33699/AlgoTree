@@ -14,6 +14,9 @@ class Node
     var left: Node?
     var right: Node?
     var value: Int
+    var isPick = false
+    var hasBeenLeft = false
+    var hasBeenRight = false
     
     init(left: Node?, right: Node?, value: Int)
     {
