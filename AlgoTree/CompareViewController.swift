@@ -26,6 +26,8 @@ class CompareViewController: UIViewController
         
         let answer3: Int = compareBinaryTree(treeA: treeA, treeB: treeB)
         print(answer3)
+        
+        print(treeB.bigGodLevelOrder())
     }
     
     func compareBinaryTree(treeA: Tree, treeB: Tree) -> Int

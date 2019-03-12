@@ -8,8 +8,11 @@
 
 import UIKit
 
-class InorderViewController: UIViewController {
-
+class OrderTraversalViewController: UIViewController
+{
+    @IBOutlet weak var answer: UILabel!
+    var tree: Tree?
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -23,7 +26,26 @@ class InorderViewController: UIViewController {
         let node5: Node = Node.init(left: node8, right: node9, value: 5)
         let node2: Node = Node.init(left: nil, right: node5, value: 2)
         let node0: Node = Node.init(left: node1, right: node2, value: 0)
-        let tree: Tree = Tree.init(root: node0)
-        print(tree.strInorder())
+        tree = Tree.init(root: node0)
+    }
+    
+    @IBAction func pre(_ sender: Any)
+    {
+        answer.text = self.arrayToString(array: tree?.bigGodPreOrder() ?? [])
+    }
+    
+    @IBAction func `in`(_ sender: Any)
+    {
+        answer.text = self.arrayToString(array: tree?.bigGodInOrder() ?? [])
+    }
+    
+    @IBAction func post(_ sender: Any)
+    {
+        answer.text = self.arrayToString(array: tree?.bigGodPostOrder() ?? [])
+    }
+    
+    func arrayToString(array: [Int]) -> String
+    {
+        return array.reduce("", { "\($0)" + "\($1)" })
     }
 }

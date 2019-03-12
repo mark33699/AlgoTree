@@ -16,6 +16,118 @@ class Tree
         self.root = root
     }
     
+    func bigGodMaxDepth(root: Node?) -> Int
+    {
+        guard let root = root else {
+            return 0
+        }
+        return max(bigGodMaxDepth(root: root.left), bigGodMaxDepth(root: root.right)) + 1
+    }
+    
+    func bigGodPreOrder() -> [Int]
+    {
+        var res = [Int]() //答案
+        var stack = [Node]() //走過的
+        var node: Node? = self.root //當前
+        
+        while !stack.isEmpty || node != nil
+        {
+            if node != nil
+            {
+                //旅行的順序跟輸出的順序相同
+                res.append(node!.value)
+                stack.append(node!)
+                //往左下鑽
+                node = node!.left
+            }
+            else
+            {
+                //左下沒有的話, 就把取得右下, 並且往上
+                node = stack.removeLast().right
+            }
+        }
+        return res
+    }
+    
+    func bigGodInOrder() -> [Int]
+    {
+        var res = [Int]()
+        var stack = [Node]()
+        var node: Node? = self.root
+        
+        while !stack.isEmpty || node != nil
+        {
+            if node != nil
+            {
+                stack.append(node!)
+                node = node!.left
+            }
+            else
+            {
+                res.append(stack.last!.value)
+                node = stack.removeLast().right
+            }
+        }
+        return res
+    }
+    
+    func bigGodPostOrder() -> [Int]
+    {
+        var res = [Int]()
+        var stack = [Node]()
+        var node: Node? = self.root
+        
+        while !stack.isEmpty || node != nil
+        {
+            if node != nil
+            {
+                stack.append(node!)
+                node = node!.left
+            }
+            else
+            {
+                let last = stack.last!
+                node = stack.removeLast().right
+                if node == nil
+                {
+                    res.append(last.value)
+                }
+                else
+                {
+                    res.append(node!.value)
+                }
+            }
+        }
+        return res
+    }
+    
+    func bigGodLevelOrder() -> [[Int]]
+    {
+        var res = [[Int]]()
+        var queue = [Node]()
+        
+        queue.append(self.root)
+        while queue.count > 0
+        {
+            var level = [Int]()
+            for _ in 0 ..< queue.count
+            {
+                let node = queue.removeFirst()
+                level.append(node.value)
+                if let left = node.left
+                {
+                    queue.append(left)
+                }
+                if let right = node.right
+                {
+                    queue.append(right)
+                }
+            }
+            res.append(level)
+        }
+        return res
+    }
+    
     func strInorder() -> String
     {
         var strInorder = ""
@@ -103,28 +215,12 @@ class Tree
         while (aryReady.count > 0)
 
         return strInorder
-        
-        /*
-         //逐一放入, 逐一取出, 應該是FILO
-         
-         1.如果有左, 往左
-         2.如果沒有, 輸出自己(6), 往上
-         3.自己未輸出 ? 輸出自己(3), 往右
-           自己已輸出 ? 往上
-         4.回到1.
-         */
-        
-    }
-    
-    func travelDSF()
-    {
-        
     }
     
     func levelorder() -> [Int?]
     {
         var aryLevelorder: [Int?] = [self.root.value]
-        var aryReady = [self.root]
+        var aryReady: [Node?] = [self.root] //我想讓陣列裡可含nil, 但寫[Node?]會讓裡面的元素型別變成 Node??
         
         repeat
         {
@@ -135,30 +231,39 @@ class Tree
         return aryLevelorder
     }
     
-    func travelBSF(aryLevelorder: [Int?], aryReady: [Node]) ->  ([Int?], [Node])
+    func travelBSF(aryLevelorder: [Int?], aryReady: [Node?]) ->  ([Int?], [Node?])
     {
         var aryLevelorder = aryLevelorder
         var aryReady = aryReady
-        let currentNode: Node = aryReady.first!
+        let currentNode = aryReady.first
         aryReady.remove(at: 0)
         
-//        aryLevelorder.append(currentNode.value)
-        if let left = currentNode.left
+        if let currentNode = currentNode
         {
-            aryLevelorder.append(left.value)
-            aryReady.append(left)
+            if let left = currentNode?.left
+            {
+                aryLevelorder.append(left.value)
+                aryReady.append(left)
+            }
+            else
+            {
+                aryLevelorder.append(nil)
+                aryReady.append(nil)
+            }
+            if let right = currentNode?.right
+            {
+                aryLevelorder.append(right.value)
+                aryReady.append(right)
+            }
+            else
+            {
+                aryLevelorder.append(nil)
+                aryReady.append(nil)
+            }
         }
         else
         {
             aryLevelorder.append(nil)
-        }
-        if let right = currentNode.right
-        {
-            aryLevelorder.append(right.value)
-            aryReady.append(right)
-        }
-        else
-        {
             aryLevelorder.append(nil)
         }
         
