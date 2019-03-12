@@ -41,7 +41,9 @@ class OrderTraversalViewController: UIViewController
     
     @IBAction func post(_ sender: Any)
     {
-        answer.text = self.arrayToString(array: tree?.bigGodPostOrder() ?? [])
+        tree?.ntnuPostOrder(node: tree?.root)
+        answer.text = self.arrayToString(array: tree?.postOrder ?? [])
+//        answer.text = self.arrayToString(array: tree?.bigGodPostOrder() ?? [])
     }
     
     func arrayToString(array: [Int]) -> String

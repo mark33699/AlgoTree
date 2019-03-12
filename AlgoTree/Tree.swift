@@ -11,9 +11,21 @@ import Foundation
 class Tree
 {
     var root: Node
+    var postOrder = [Int]()
     init(root: Node)
     {
         self.root = root
+    }
+    
+    func ntnuPostOrder(node: Node?)
+    {
+        guard let node = node else
+        {
+            return
+        }
+        ntnuPostOrder(node: node.left)
+        ntnuPostOrder(node: node.right)
+        postOrder.append(node.value)
     }
     
     func bigGodMaxDepth(root: Node?) -> Int
